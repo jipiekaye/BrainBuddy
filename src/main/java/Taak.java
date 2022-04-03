@@ -10,10 +10,10 @@ public abstract class Taak {
 
 
     class DagelijkseTaak extends Taak{
-        private ArrayList<Tijd> tijdstippen;
+        private ArrayList<TijdStip> tijdstippen;
         private ArrayList<DayOfWeek> dagen;
 
-        public DagelijkseTaak (String naam, ArrayList<Tijd> tijdstippen, ArrayList<DayOfWeek> dagen) {
+        public DagelijkseTaak (String naam, ArrayList<TijdStip> tijdstippen, ArrayList<DayOfWeek> dagen) {
             super(naam);
             this.tijdstippen = tijdstippen;
             this.dagen = dagen;
@@ -21,10 +21,10 @@ public abstract class Taak {
     }
 
     class WekelijkseTaak extends Taak{
-        private Tijd tijdstip;
+        private TijdStip tijdstip;
         private DayOfWeek dag;
 
-        public WekelijkseTaak (String naam, Tijd tijdstip, DayOfWeek dag) {
+        public WekelijkseTaak (String naam, TijdStip tijdstip, DayOfWeek dag) {
             super(naam);
             this.tijdstip = tijdstip;
             this.dag = dag;
