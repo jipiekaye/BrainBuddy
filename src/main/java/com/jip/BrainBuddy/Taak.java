@@ -1,3 +1,5 @@
+package com.jip.BrainBuddy;
+
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 

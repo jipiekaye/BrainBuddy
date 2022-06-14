@@ -1,3 +1,5 @@
+package com.jip.BrainBuddy;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.LocalDate;
