@@ -1,6 +1,6 @@
 package com.jip.BrainBuddy.Taak;
 
-class ConstanteTaak extends Taak {
+public class ConstanteTaak extends Taak {
     private Integer minimaleWaarde;
     private Integer maximaleWaarde;
     private Integer huidigeWaarde;
