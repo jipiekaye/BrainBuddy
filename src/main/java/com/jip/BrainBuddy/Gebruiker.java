@@ -16,11 +16,11 @@ public class Gebruiker {
         System.out.print("ja/nee:");
         String antwoord = scanner.nextLine();
         if (antwoord.equals("ja")) {
-
+            initializeerBasistaken();
         }
     }
 
-    public void initializeerTaken(){
+    public static void initializeerBasistaken(){
         ArrayList<TijdStip> takeMedTijd = new ArrayList<>();
         takeMedTijd.add(new TijdStip("1200"));
         Taken.add(new DagelijkseTaak("takeMed", takeMedTijd));
