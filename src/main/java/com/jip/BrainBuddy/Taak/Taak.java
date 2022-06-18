@@ -14,9 +14,16 @@ public abstract class Taak {
         this.naam = naam;
     }
 
-
     public void taakControle() throws AWTException {
         if (tijdStip.isNu())
             System.out.println(melding);
+    }
+
+    protected String getNaam() {
+        return naam;
+    }
+
+    protected void setNaam(String naam) {
+        this.naam = naam;
     }
 }
