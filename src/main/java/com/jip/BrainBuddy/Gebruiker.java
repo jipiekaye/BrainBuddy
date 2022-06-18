@@ -3,6 +3,7 @@ package com.jip.BrainBuddy;
 import com.jip.BrainBuddy.Taak.DagelijkseTaak;
 import com.jip.BrainBuddy.Taak.Taak;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -14,24 +15,33 @@ public class Gebruiker {
     public static boolean exit = false;
 
     public static void main(String[]args){
+        initializeerBasistaken();
         final ExecutorService pool = Executors.newFixedThreadPool(2);
 
         pool.execute(() -> {
-            doKlok();
-            menu();
+
+            try {
+                doKlok();
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
         });
 
         pool.shutdown();
     }
 
-    private static void doKlok() {
+    private static void doKlok() throws AWTException {
         String lastTime = null;
         while (!exit) {
             Klok klok = new Klok();
             if (lastTime == null)
                 lastTime = klok.getTijd();
-            if (!lastTime.equals(klok.getTijd()))
+            if (!lastTime.equals(klok.getTijd())) {
                 System.out.println(klok.getTijd());
+                for (Taak inhoud:Taken) {
+                    inhoud.taakControle();
+                }
+            }
             lastTime= klok.getTijd();
         }
     }
@@ -71,13 +81,11 @@ public class Gebruiker {
         } while(!exit);
     }
 
-    public static void klokAan(){
-
-    }
-
     public static void initializeerBasistaken(){
         ArrayList<TijdStip> takeMedTijd = new ArrayList<>();
-        takeMedTijd.add(new TijdStip("1200"));
-        Taken.add(new DagelijkseTaak("takeMed", takeMedTijd));
+        takeMedTijd.add(new TijdStip("14:25:00"));
+        takeMedTijd.add(new TijdStip("14:25:10"));
+        takeMedTijd.add(new TijdStip("14:24:50"));
+        Taken.add(new DagelijkseTaak("takeMed", takeMedTijd,"Medicatie moet ingenomen worden"));
     }
 }
