@@ -1,24 +1,16 @@
 package com.jip.BrainBuddy;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.time.LocalDate;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Klok {
-    private static LocalTime Tijd = LocalTime.now();
-    private static LocalDate Datum = LocalDate.now();
-    private static DayOfWeek today = LocalDate.now().getDayOfWeek();
+    private LocalTime tijd = LocalTime.now();
+    private LocalDate Datum = LocalDate.now();
+    private DayOfWeek today = LocalDate.now().getDayOfWeek();
 
-    public static LocalDate getDatum() {
-        return Datum;
-    }
-
-    public static LocalTime getTijd() {
-        return Tijd;
-    }
-
-    public static DayOfWeek getToday() {
-        return today;
+    public String getTijd() {
+        return tijd.truncatedTo(ChronoUnit.SECONDS).format(DateTimeFormatter.ISO_LOCAL_TIME);
     }
 }
 

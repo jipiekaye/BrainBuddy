@@ -6,4 +6,8 @@ public class TijdStip extends Klok {
     public TijdStip(String tijdStip) {
         this.tijdStip = tijdStip;
     }
+
+    public String getTijdStip() {
+        return tijdStip;
+    }
 }

@@ -10,4 +10,11 @@ public abstract class Taak {
         this.naam = naam;
     }
 
+    @Override
+    public String toString() {
+        return "Taak{" +
+                "naam='" + naam + '\'' +
+                ", melding=" + melding +
+                '}';
+    }
 }
