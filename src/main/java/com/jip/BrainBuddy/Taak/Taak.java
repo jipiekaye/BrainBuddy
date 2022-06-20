@@ -1,21 +1,21 @@
 package com.jip.BrainBuddy.Taak;
 
 import com.jip.BrainBuddy.Melding;
-import com.jip.BrainBuddy.TijdStip;
+import com.jip.BrainBuddy.Tijdstip;
 
 import java.awt.*;
 
 public abstract class Taak {
     private String naam;
     private Melding melding;
-    private TijdStip tijdStip;
+    private Tijdstip tijdstip;
 
     public Taak(String naam) {
         this.naam = naam;
     }
 
     public void taakControle() throws AWTException {
-        if (tijdStip.isNu())
+        if (tijdstip.isNu())
             System.out.println(melding);
     }
 

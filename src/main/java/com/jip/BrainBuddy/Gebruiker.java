@@ -17,7 +17,7 @@ public class Gebruiker {
     public static boolean exit = false;
 
     public static void main(String[] args) throws InterruptedException {
-        initializeerBasistaken();
+        Gebruiker gebruiker = new Gebruiker();
         // initializeer multithreading zodat meldingen kunnen worden weergeven terwijl een menu draait in de terminal
         final ExecutorService pool = Executors.newFixedThreadPool(2);
 
@@ -31,9 +31,7 @@ public class Gebruiker {
         });
 
         //thread menu gaat lopen
-        pool.execute(() -> {
-            menu();
-        });
+        pool.execute(gebruiker::menu);
 
         pool.shutdown();
 
@@ -58,7 +56,7 @@ public class Gebruiker {
         }
     }
 
-    private static void menu() {
+    private void menu() {
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -67,7 +65,7 @@ public class Gebruiker {
             System.out.println("3. Taken aanmaken/verwijderen.");
             System.out.println("4. Zie huidige meldingen.");
             System.out.println("0. Exit");
-            System.out.printf("Uw keuze ");
+            System.out.print("Uw keuze ");
 
             int optie;
             for (optie = scanner.nextInt(); optie > 8 || optie < 0; optie = scanner.nextInt()) {
@@ -79,7 +77,7 @@ public class Gebruiker {
             }
 
             if (optie == 1) {
-                basisTaken();
+                initializeerBasistaken();
             }
 
             if (optie == 2) {
@@ -89,7 +87,7 @@ public class Gebruiker {
                 System.out.println("1. Taak aanmaken.");
                 System.out.println("2. Taak verwijderen.");
                 System.out.println("0. Exit");
-                System.out.printf("Uw keuze: ");
+                System.out.print("Uw keuze: ");
                 int optie2;
                 for (optie2 = scanner.nextInt(); optie2 > 2 || optie2 < 0; optie2 = scanner.nextInt()) {
                     System.out.println("Vul a.u.b. een keuze 0 t/m 2 in.");
@@ -98,7 +96,7 @@ public class Gebruiker {
                     voegTaakToe();
                 }
                 if (optie2 == 2) {
-                        verwijderTaak();
+                    verwijderTaak();
                 }
             }
 
@@ -108,28 +106,25 @@ public class Gebruiker {
         } while (!exit);
     }
 
-    private static void basisTaken() {
+    private static ArrayList<Taak> initializeerBasistaken() {
+        ArrayList<Tijdstip> slapen = new ArrayList<>();
+        Klok klok = new Klok();
+        slapen.add(new Tijdstip(klok.getTijd() + "\b\b" + "59"));
+        Taken.add(new DagelijkseTaak("Slapen", slapen, "Het is bedtijd !"));
+        return Taken;
     }
 
-
-    private static void initializeerBasistaken() {
-        ArrayList<TijdStip> takeMedTijd = new ArrayList<>();
-        takeMedTijd.add(new TijdStip("18:00:00"));
-        takeMedTijd.add(new TijdStip("14:25:10"));
-        takeMedTijd.add(new TijdStip("14:24:50"));
-        Taken.add(new DagelijkseTaak("Medicatie Slikken", takeMedTijd, "Medicatie moet ingenomen worden"));
-    }
-
-    private static void voegTaakToe() {
+    private void voegTaakToe() {
         System.out.println("1. Dagelijkse taak aanmaken");
  //       System.out.println("2. Wekelijkse taak aanmaken");//
  //       System.out.println("3. Maandelijkse taak aanmaken");//
+        System.out.print("Uw keuze: ");
         if (scanner.nextInt() == 1)
             Taken.add(new DagelijkseTaak());
 
     }
 
-    private static void verwijderTaak() {
+    private void verwijderTaak() {
         if (!Taken.isEmpty()) {
             System.out.println("welke taak wilt u verwijderen?");
             int i = 1;

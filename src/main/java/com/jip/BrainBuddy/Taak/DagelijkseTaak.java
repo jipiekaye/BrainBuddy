@@ -1,17 +1,17 @@
 package com.jip.BrainBuddy.Taak;
 import com.jip.BrainBuddy.Melding;
-import com.jip.BrainBuddy.TijdStip;
+import com.jip.BrainBuddy.Tijdstip;
 import java.awt.*;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DagelijkseTaak extends Taak{
-    private ArrayList<TijdStip> tijdStippen;
+    private ArrayList<Tijdstip> tijdStippen;
     private ArrayList<DayOfWeek> dagen;
     private Melding melding;
 
-    public DagelijkseTaak (String naam, ArrayList<TijdStip> tijdstippen, String melding) {
+    public DagelijkseTaak (String naam, ArrayList<Tijdstip> tijdstippen, String melding) {
         super(naam);
         this.tijdStippen = tijdstippen;
         this.melding = new Melding(melding);
@@ -19,7 +19,7 @@ public class DagelijkseTaak extends Taak{
 
     public DagelijkseTaak (){
         super("nieuweTaak");
-        ArrayList<TijdStip> tijdStippen = new ArrayList<>();
+        ArrayList<Tijdstip> tijdStippen = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Geef de naam van uw taak: ");
@@ -34,7 +34,7 @@ public class DagelijkseTaak extends Taak{
             do {
                 antwoord = scanner.nextLine();
                 if (!antwoord.equals("0")){
-                    tijdStippen.add(new TijdStip(antwoord));
+                    tijdStippen.add(new Tijdstip(antwoord));
                 System.out.print("voer nog een tijdstip in of voer \"0\" in:");
                 }
             } while (!antwoord.equals("0"));
@@ -43,7 +43,7 @@ public class DagelijkseTaak extends Taak{
 
 
     public void taakControle() throws AWTException {
-        for (TijdStip inhoud: tijdStippen) {
+        for (Tijdstip inhoud: tijdStippen) {
             if (inhoud.isNu()) {
                 System.out.println(melding);
                 melding.windowsMelding();
