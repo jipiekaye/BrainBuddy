@@ -11,7 +11,7 @@ public class Melding {
     }
 
     public String toString() {
-        return "-----\n" + melding + "\n-----";
+        return "\n\n-----\n" + melding + "\n-----\n\n";
     }
 
     public void windowsMelding() throws AWTException {

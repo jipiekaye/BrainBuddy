@@ -14,7 +14,7 @@ public class Gebruiker {
     static ArrayList<Taak> Taken = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
 
-    public static boolean exit = false;
+    private static boolean exit = false;
 
     public static void main(String[] args) throws InterruptedException {
         Gebruiker gebruiker = new Gebruiker();
@@ -24,7 +24,7 @@ public class Gebruiker {
         //thread klok gaat lopen
         pool.execute(() -> {
             try {
-                doKlok();
+                gebruiker.doKlok();
             } catch (AWTException e) {
                 e.printStackTrace();
             }
@@ -40,7 +40,7 @@ public class Gebruiker {
         }
     }
 
-    private static void doKlok() throws AWTException {
+    private void doKlok() throws AWTException {
         String lastTime = null;
         while (!exit) {
             Klok klok = new Klok();
@@ -60,12 +60,13 @@ public class Gebruiker {
         Scanner scanner = new Scanner(System.in);
 
         do {
+            System.out.println();
             System.out.println("1. Configureer Basistaken.");
             System.out.println("2. Overzicht van Taken weergeven.");
             System.out.println("3. Taken aanmaken/verwijderen.");
             System.out.println("4. Zie huidige meldingen.");
             System.out.println("0. Exit");
-            System.out.print("Uw keuze ");
+            System.out.print("Uw keuze: ");
 
             int optie;
             for (optie = scanner.nextInt(); optie > 8 || optie < 0; optie = scanner.nextInt()) {
